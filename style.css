@@ -1,0 +1,394 @@
+@import url(https://fonts.googleapis.com/css?family=Teko:300,regular,500,600,700);
+@import url(https://fonts.googleapis.com/css?family=Dancing+Script:regular,500,600,700);
+
+/**VARIABLES*/
+:root{
+     --font-principal: 'Teko';
+     --font-cursiva: 'Dancing Script';
+     --gris600: #2f2e2e;
+     --gris200: #706d6d;
+}
+
+/* Scrollbar */
+body::-webkit-scrollbar{
+     width: 8px;
+}
+
+body::-webkit-scrollbar-thumb{
+     background-color: #f7ca37;
+     border-radius: 50px;
+}
+
+/**GENERALES*/
+*{
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: Arial, Helvetica, sans-serif;
+     color: var(--gris600);
+}
+
+a{
+     text-decoration: none;
+}
+
+h1, h2{
+     font-family: var(--font-principal);
+}
+
+h3{
+     font-family: var(--font-cursiva);
+}
+
+/**Botones */
+.btn{
+     background: transparent;
+     width: 130px;
+     height: 42px;
+     font-size: 20px;
+     text-transform: uppercase;
+     cursor: pointer;
+     transition: all .5s;
+}
+
+.btn.light{
+     color: #fff;
+     border: 2px solid #fff;
+}
+
+.btn.dark{
+     color: var(--gris600);
+     border: 2px solid var(--gris600);
+}
+
+.btn:hover{
+     background: var(--gris600);
+     border: 2px solid var(--gris600);
+     color: #fff;
+}
+
+/**GRID */
+.grid{ /*Esta plantilla la vamos a usar a lo largo del proyecto, a todo contenedor que le coloquemos la clase grid, va a tener estas caracteristicas*/
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto; /*El tamaño de las filas sea automatico*/
+    height: 100%; /*Aca le decimos que este grid ocupe el 100% de su contenedor padre*/
+}
+
+.container-center{
+     width: 85%;    /*Puede variar el valor de los px, aca se les pone porque de lo contrario los iconos estarian tocando con las paredes de la pantalla. */
+     margin: 0 auto; /*Una vez que separamos el contenido con el 85 del width es buena idea centrar el contenido con un margin*/
+}
+
+.span6{
+     grid-column: span 6;
+}
+
+/**SECCIONES  */
+section{
+     position: relative; /*ya que mas adelante podemos trabajar con pseudoelementos y posiciones absolutas, nos adelantamos y ya que en este proyecto hay muchos muchos sections, le clavamos relative*/
+     width: 100%;
+     height: 100vh;
+}
+
+section.full::before{
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-attachment: fixed !important; /*La imagen queda quieta y no acompaña el scroll ni los contenidos, efecto cheto*/
+     background-position: center !important;
+}
+
+/**Contenedor background */
+.background{ /*Esto se hace porque esta clase, será una clase general, ya que hay muchas secciones repetidas.*/
+     background-size: cover !important;
+     background-position: right !important;
+}
+
+
+
+/** Text-content  */
+.text-content{
+     position: relative;
+     width: 100%;
+     height: 100%;
+     display: flex;
+     justify-content: center; /*para centrar*/
+     align-items: center;     /*para centrar*/
+     flex-direction: column;  /*Para que tanto el h3, h1 y h2 esten uno abajo del oyto*/
+     z-index: 1; /*para asegurarnos que siempre este por encima de la imagen*/
+}
+
+
+/** Full */
+
+.text-content.full{
+     grid-column: span 12;
+}
+
+.text-content.full h1,
+.text-content.full h2{
+     color: #fff;
+     text-transform: uppercase;
+     text-align: center;
+}
+
+.text-content.full h1{
+     font-size: 115px;
+     letter-spacing: 20px;
+     line-height: 1.5;
+     font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-content.full h2{
+     font-size: 50px;
+     letter-spacing: 2px;
+     font-weight: 100;
+     line-height: 0.1;
+}
+
+/**Lateral */
+.text-content.lateral{
+     padding: 0 50px;
+
+}
+
+.text-content.lateral h1{
+     font-size: 55px;
+     font-weight: 400;
+     letter-spacing: 2px;
+     line-height: 1;
+     text-align: center;
+}
+
+.text-content.lateral h3{
+     font-size: 40px;
+     font-weight: 600;
+     text-align: center;
+}
+
+.text-content.lateral p{
+     font-size: 20px;
+     margin: 20px 0;
+     text-align: center;
+     letter-spacing: 0.5px;
+}
+
+/**Menu de navegacion  */
+nav{
+     position: fixed; /*Porque el meno siempre va a estar fijo, osea, cuando hagamos scroll, siempre estara visible arriba*/
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 50px;
+     background: rgba(249, 219, 121, 0.745);
+     z-index: 1;
+}
+
+nav .grid{
+     justify-items: start;
+     align-items: center;
+}
+
+nav .enlaces{ /*al hacer esto, los enlaces y los iconos ocuparan 10 casillas de la barra de navegacion*/
+     grid-column: span 10;
+     display: flex; /*habilitamos flex, para asegurarnos que queden centrados por completo*/
+     justify-content: center;
+     align-items: center;
+}
+
+nav .enlaces a{ /*Aca del nav entramos a los enlaces y de la clase enlaces agarramos a cada <a href y le aplicamos lo siguiente*/
+     margin-right: 30px; /*separacion entre enlaces*/
+     font-family: var(--font-principal);
+     font-size: 20px;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+     transition: all .5s;
+}
+
+nav .enlaces a:hover{
+     color: rgb(214, 209, 209);
+}
+
+/**Sociales */
+.sociales{
+     grid-column: span 2;
+     display: flex;
+     justify-content: flex-end;
+     width: 100%;
+}
+
+.sociales a{
+     width: 30px;
+     height: 30px;
+     margin: 0 10px 0 0;
+     border-radius: 11px;
+     background: rgb(109, 65, 0);
+     color: #fff;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+/**Header */
+header{
+     position: relative;
+     width: 100%;
+     height: calc(100vh + 50px); /*Esto es para que la imagen no se vea tan arriba y estorbar el menu. al 100vh que habiamos declarado, le sumamos 50px que es el equivalente a la barra de nav.*/
+     background: #f9d879;
+}
+
+header::before{ /*Ya que el contenedor padre tiene position relative, le vamos a poner, a ese elemento un posicion absolute para que lo podamos ubicar donde nosotros queramos dentro del contenedor*/
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: url(15heladeria/img/image1.webp);
+     background-repeat: no-repeat;
+     background-position: center; /*asi, posicionamos nuestra imagen*/
+}
+
+header .grid{
+     justify-items: center;
+     align-items: center;
+}
+
+header .text-content{ /*Vamos a centrar los elementos pero se centraran solo en la columna que les corresponde de forma (vertical)*/
+     padding: 200px 0 0 0; /*Vamos a crear un poco de relleno en la parte de arriba para que los elementos se bajen un poco y queden bonitos con la imagen*/
+}
+
+header .text-content h3{
+     position: absolute;
+     bottom: 50px;
+     right: 0;
+     font-size: 50px;
+     font-weight: 700;
+     color: var(--gris600);
+}
+
+/**Sabores */
+.sabores div.background{
+     background: url(15heladeria/img/image2.webp);
+}
+
+/**Especial  */
+.especial{
+     background: #b5e8d5;
+}
+
+.especial::before{
+     background: url(15heladeria/img/image3.webp);
+}
+
+/**Lugar */
+.lugar .background{
+     background: url(15heladeria/img/image4.webp);
+} /*un dato curioso e importante, es que la imagen se ve correctamente sin mayores problemas porque en la linea 86 u 87 agregamos: background-size: cover !important;
+background-position: right !important; son elementos enteramente reutilizables*/
+
+/**Eventos*/
+.eventos{
+     background: #ffbfb3;
+}
+
+.eventos .btn{
+     width: 200px;
+}
+
+.eventos::before{
+     background: url(15heladeria/img/image5.webp);
+}
+
+/**Postres*/
+.postres .background{
+     background: url(15heladeria/img/image6.webp);
+}
+
+/**Helados*/
+.helado{
+     height: 115vh;
+     background: url(15heladeria/img/image7.webp), #b5e8d5;
+     background-attachment: fixed;
+     display: flex;
+}
+
+.helado img{
+     width: 100%;
+     object-fit: cover;
+}
+
+/**Footer*/
+footer{
+     width: 100%;
+     height: 400px;
+}
+
+footer .grid{
+     grid-template-columns: repeat(5, 1fr);
+     gap: 20px;
+     justify-items: center;
+     align-content: center;
+}
+
+footer h2{
+     font-size: 28px;
+     font-weight: 400;
+     text-transform: uppercase;
+}
+
+footer p,
+footer ul,
+footer input{
+     margin: 10px 0;
+}
+
+footer ul{
+     list-style: none;
+}
+
+footer ul li a:hover{
+     text-decoration: underline;
+}
+
+footer input{
+     width: 100%;
+     height: 40px;
+     padding: 0 20px;
+}
+
+footer input::placeholder{
+     letter-spacing: 1px;
+     color: var(--gris600);
+}
+
+footer .btn{
+     width: 100%;
+}
+
+footer .sociales{
+     justify-content: flex-start;
+}
+
+/**Footer copy */
+div.copy{
+     width: 100%;
+     height: 35px;
+     background: var(--gris600);
+     display: grid;
+     grid-template-columns: 100%; /*Es lo mismo que hubieramos puesto que es un solo span que abarca las 12 columnas*/
+     justify-items: center;
+     align-items: center;
+}
+
+div.copy p{
+     color: rgba(255, 255, 255, 0.5);
+     font-size: 15px;
+     font-weight: 600;
+}
+
+
